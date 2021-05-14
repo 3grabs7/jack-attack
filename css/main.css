@@ -51,4 +51,67 @@
 
 .inactive {
   display: none;
+}
+
+.timesalmostup {
+  color: red !important;
+  -webkit-animation: pulsingtimer 1s infinite;
+          animation: pulsingtimer 1s infinite;
+}
+
+.wronganswer {
+  -webkit-animation: shaking 2s 1;
+          animation: shaking 2s 1;
+}
+
+@-webkit-keyframes pulsingtimer {
+  30% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulsingtimer {
+  30% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes shaking {
+  10% {
+    transform: rotate3d(5deg, 5deg, 5deg);
+  }
+  20% {
+    transform: rotate3d(-5deg, -5deg, -5deg);
+  }
+  30% {
+    transform: rotate3d(5deg, 5deg, 5deg);
+  }
+  40% {
+    transform: rotate3d(-5deg, -5deg, -5deg);
+  }
+  50% {
+    transform: rotate3d(5deg, 5deg, 5deg);
+  }
+}
+@keyframes shaking {
+  10% {
+    transform: rotate3d(5deg, 5deg, 5deg);
+  }
+  20% {
+    transform: rotate3d(-5deg, -5deg, -5deg);
+  }
+  30% {
+    transform: rotate3d(5deg, 5deg, 5deg);
+  }
+  40% {
+    transform: rotate3d(-5deg, -5deg, -5deg);
+  }
+  50% {
+    transform: rotate3d(5deg, 5deg, 5deg);
+  }
 }/*# sourceMappingURL=main.css.map */

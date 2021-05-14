@@ -8,8 +8,39 @@ const generateRandomWord = async () => {
 	return word
 }
 
-const scrambleWord = async () => {}
+const scrambleWord = (word) => {
+	let wordAsArray = [...word]
+	let scrambledWord = ''
+	while (wordAsArray.length) {
+		const index = Math.floor(Math.random() * wordAsArray.length)
+		scrambledWord += wordAsArray[index]
+		wordAsArray.splice(index, 1)
+	}
+	return scrambledWord
+}
 
-const sabotageWord = async () => {}
+const sabotageWord = (word) => {
+	// sjuk funktion för att slinga in små stavfel os
+}
 
-const blankOutWord = async () => {}
+const blankOutWord = (word) => {
+	const keep = []
+	while (keep.length < word.length / 2) {
+		let index = Math.floor(Math.random() * word.length)
+		if (!keep.includes(index)) {
+			keep.push(index)
+		}
+	}
+	let blankedOutWord = ''
+	for (let i = 0; i < word.length; i++) {
+		if (keep.includes(i)) {
+			blankedOutWord += word[i]
+			continue
+		}
+		blankedOutWord += '_'
+	}
+	return {
+		blankedOutWord: blankedOutWord,
+		orginalWord: word,
+	}
+}
