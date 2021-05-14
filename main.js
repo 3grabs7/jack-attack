@@ -11,13 +11,14 @@ button.addEventListener('click', async () => {
 	const wrap = document.querySelector('.main_startbutton')
 	const input = document.querySelector('.main_wordinput input')
 	const timeLeft = document.querySelector('#timeleftcounter')
+	const correctAnswerAnimation = document.querySelector('#displaycorrectanswer')
 
 	let wordToGuess = await generateRandomWord()
 	currentWord.innerHTML = scrambleWord(wordToGuess)
 	wrap.classList.add('inactive')
 	input.focus()
 
-	let count = 10
+	let count = 20
 	timeLeft.innerHTML = count
 	setInterval(() => {
 		count--
@@ -51,13 +52,19 @@ button.addEventListener('click', async () => {
 				input.classList.add('wronganswer')
 				setTimeout(() => {
 					input.classList.remove('wronganswer')
-				}, 3000)
+				}, 1000)
 				input.value = ''
 				return
 			}
+			correctAnswerAnimation.innerText = wordToGuess
+			correctAnswerAnimation.classList.add('rightanswer')
+			setTimeout(() => {
+				correctAnswerAnimation.innerText = ''
+				correctAnswerAnimation.classList.remove('rightanswer')
+			}, 1000)
 			// if we got here, i guess they actually made it
 			input.value = ''
-			count += 5
+			count += 10
 			wordToGuess = await generateRandomWord()
 			currentWord.innerHTML = scrambleWord(wordToGuess)
 			// maybe some cool animations as reward?

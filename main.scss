@@ -1,11 +1,16 @@
+body {
+	background-color: #9d79bc;
+}
+
 .main {
 	margin: 0 auto;
 	height: 60vh;
 	width: 80vw;
-	background-color: blue;
+	background-color: #a14da0;
 	&_worddisplay {
 		height: 80px;
-		background-color: aquamarine;
+		background-color: #7e1f86;
+		color: white;
 		text-align: center;
 		font-size: 30px;
 		align-content: center;
@@ -18,6 +23,7 @@
 		text-align: center;
 		input {
 			margin: 0 auto;
+			background-color: #91c4f2;
 			text-align: center;
 			height: 80px;
 			width: 520px;
@@ -31,12 +37,11 @@
 			height: 80px;
 			width: 500px;
 			font-size: 40px;
-			background-color: black;
-			color: orange;
+			background-color: #7e1f86;
+			color: white;
 			&:hover {
 				cursor: pointer;
-				color: green;
-				background-color: hotpink;
+				background-color: #a14da0;
 			}
 		}
 	}
@@ -59,7 +64,39 @@
 }
 
 .wronganswer {
-	animation: shaking 2s 1;
+	animation: shake 1;
+	animation-duration: 0.5s;
+	animation-direction: normal;
+	animation-timing-function: linear;
+	animation-fill-mode: forwards;
+	border: 5px solid red;
+}
+
+.rightanswer {
+	top: 20vh;
+	left: 40vw;
+	position: absolute;
+	color: white;
+	animation: dunder 2s 1;
+}
+
+@keyframes dunder {
+	0% {
+		font-size: 2px;
+	}
+	80% {
+		color: green;
+		font-size: 400px;
+		transform: rotate(0deg);
+		transform: translate(-400px, -400px);
+		overflow: hidden;
+	}
+	100% {
+		font-size: 400px;
+		transform: rotate(360deg);
+		transform: translate(1000px);
+		overflow: hidden;
+	}
 }
 
 @keyframes pulsingtimer {
@@ -71,20 +108,22 @@
 	}
 }
 
-@keyframes shaking {
-	10% {
-		transform: rotate3d(5deg, 5deg, 5deg);
+@keyframes shake {
+	10%,
+	90% {
+		transform: translate3d(-1px, 0, 0);
 	}
-	20% {
-		transform: rotate3d(-5deg, -5deg, -5deg);
+	20%,
+	80% {
+		transform: translate3d(2px, 0, 0);
 	}
-	30% {
-		transform: rotate3d(5deg, 5deg, 5deg);
+	30%,
+	50%,
+	70% {
+		transform: translate3d(-4px, 0, 0);
 	}
-	40% {
-		transform: rotate3d(-5deg, -5deg, -5deg);
-	}
-	50% {
-		transform: rotate3d(5deg, 5deg, 5deg);
+	40%,
+	60% {
+		transform: translate3d(4px, 0, 0);
 	}
 }
