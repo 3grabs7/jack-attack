@@ -14,9 +14,7 @@ const Score = mongoose.model('ScoreBoard', scoreSchema)
 
 exports.saveScore = (name, score) => {
 	const newScore = new Score({ name, score })
-	newScore.save((error) => {
-		if (error) return console.error(error)
-	})
+	newScore.save()
 }
 
 exports.getScores = async () => {
