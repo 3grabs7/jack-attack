@@ -5,6 +5,7 @@ import {
 	blankOutWord,
 } from './wordhandler.js'
 
+// main, start jack attacking
 const button = document.querySelector('.main_startbutton button')
 button.addEventListener('click', async () => {
 	const currentWord = document.querySelector('#currentword')
@@ -13,8 +14,16 @@ button.addEventListener('click', async () => {
 	const timeLeft = document.querySelector('#timeleftcounter')
 	const correctAnswerAnimation = document.querySelector('#displaycorrectanswer')
 
-	let wordToGuess = await generateRandomWord()
-	currentWord.innerHTML = scrambleWord(wordToGuess)
+	let wordToGuess = ''
+	if (selectedMode === 'Blanked') {
+		wordToGuess = await generateRandomWord()
+		wordToGuess = modeRouting[selectedMode](wordToGuess).orginalWord
+		currentWord.innerHTML =
+			modeRouting[selectedMode](wordToGuess).blankedOutWord
+	} else {
+		wordToGuess = await generateRandomWord()
+		currentWord.innerHTML = modeRouting[selectedMode](wordToGuess)
+	}
 	wrap.classList.add('inactive')
 	input.focus()
 
@@ -44,7 +53,6 @@ button.addEventListener('click', async () => {
 			// -----------------
 			console.log(wordToGuess)
 			console.log(userInput)
-			console.log(e.key)
 			// -----------------
 
 			// if wrong, trigger keyframes and return
@@ -65,9 +73,42 @@ button.addEventListener('click', async () => {
 			// if we got here, i guess they actually made it
 			input.value = ''
 			count += 10
-			wordToGuess = await generateRandomWord()
-			currentWord.innerHTML = scrambleWord(wordToGuess)
-			// maybe some cool animations as reward?
+			if (selectedMode === 'Blanked') {
+				wordToGuess = await generateRandomWord()
+				wordToGuess = modeRouting[selectedMode](wordToGuess).orginalWord
+				currentWord.innerHTML =
+					modeRouting[selectedMode](wordToGuess).blankedOutWord
+			} else {
+				wordToGuess = await generateRandomWord()
+				currentWord.innerHTML = modeRouting[selectedMode](wordToGuess)
+			}
 		}
 	})
 })
+
+// Mode selection
+const modeButtons = document.querySelectorAll('.header_modes button')
+let selectedMode = 'Scrambler'
+Array.from(modeButtons).forEach((mode) => {
+	mode.addEventListener('click', (e) => {
+		const [activemode] = e.target.classList
+		if (activemode) {
+			return
+		}
+		Array.from(modeButtons).forEach((update) => {
+			update.classList?.remove('activemode')
+		})
+		e.target.classList.add('activemode')
+		selectedMode = e.target.innerText
+		console.log(selectedMode)
+	})
+})
+
+// Mode routing
+const modeRouting = {
+	Scrambler: scrambleWord,
+	Sabotage: sabotageWord,
+	Blanked: blankOutWord,
+}
+
+sabotageWord('kom de går änkan')

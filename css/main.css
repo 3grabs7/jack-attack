@@ -1,11 +1,44 @@
 body {
   background-color: #9d79bc;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.header {
+  width: 100%;
+  margin: 0 auto;
+}
+.header_modes {
+  display: flex;
+  justify-content: center;
+}
+.header_modes button {
+  border-radius: 0;
+  border: none;
+  height: 8vh;
+  min-height: 40px;
+  font-size: 24px;
+  background-color: #7e1f86;
+  color: white;
+  border: 3px solid #7e1f86;
+}
+.header_modes button:hover {
+  cursor: pointer;
+  background-color: #91c4f2;
+  border: 3px solid #7e1f86;
+}
+
+.activemode {
+  background-color: #91c4f2 !important;
+  border: 3px solid #7e1f86 !important;
 }
 
 .main {
   margin: 0 auto;
   height: 60vh;
+  min-height: 450px;
   width: 80vw;
+  min-width: 700px;
   background-color: #a14da0;
 }
 .main_worddisplay {
@@ -30,6 +63,7 @@ body {
   height: 80px;
   width: 520px;
   font-size: 76px;
+  border: none;
 }
 .main_startbutton {
   padding-top: 20px;
@@ -41,10 +75,12 @@ body {
   font-size: 40px;
   background-color: #7e1f86;
   color: white;
+  border: none;
 }
 .main_startbutton #startbutton:hover {
   cursor: pointer;
-  background-color: #a14da0;
+  background-color: #91c4f2;
+  border: 3px solid #7e1f86;
 }
 .main_counter {
   text-align: center;
@@ -75,7 +111,7 @@ body {
           animation-timing-function: linear;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
-  border: 5px solid red;
+  border: 3px solid red !important;
 }
 
 .rightanswer {

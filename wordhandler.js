@@ -1,4 +1,5 @@
 export { generateRandomWord, scrambleWord, sabotageWord, blankOutWord }
+import { replaceVowels, checkReplaceVowels } from './sabotagealgorithms.js'
 
 const generateRandomWord = async () => {
 	const response = await fetch(
@@ -8,7 +9,7 @@ const generateRandomWord = async () => {
 	return word
 }
 
-const scrambleWord = (word) => {
+function scrambleWord(word) {
 	let wordAsArray = [...word]
 	let scrambledWord = ''
 	while (wordAsArray.length) {
@@ -19,11 +20,7 @@ const scrambleWord = (word) => {
 	return scrambledWord
 }
 
-const sabotageWord = (word) => {
-	// sjuk funktion för att slinga in små stavfel os
-}
-
-const blankOutWord = (word) => {
+function blankOutWord(word) {
 	const keep = []
 	while (keep.length < word.length / 2) {
 		let index = Math.floor(Math.random() * word.length)
@@ -42,5 +39,15 @@ const blankOutWord = (word) => {
 	return {
 		blankedOutWord: blankedOutWord,
 		orginalWord: word,
+	}
+}
+
+// hitta index på alla åäeo
+// välj en av index på random
+// om å så o vice versa
+// om ä så e vice versa
+function sabotageWord(word) {
+	if (checkReplaceVowels) {
+		console.log(replaceVowels(word))
 	}
 }
