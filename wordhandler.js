@@ -36,10 +36,7 @@ function blankOutWord(word) {
 		}
 		blankedOutWord += '_'
 	}
-	return {
-		blankedOutWord: blankedOutWord,
-		orginalWord: word,
-	}
+	return blankedOutWord
 }
 
 // hitta index på alla åäeo

@@ -32,13 +32,21 @@ body {
 	border: 3px solid #7e1f86 !important;
 }
 
+.container {
+	display: flex;
+	justify-content: space-evenly;
+	padding-top: 0px;
+	margin-top: 0px;
+}
+
 .main {
 	margin: 0 auto;
 	height: 60vh;
 	min-height: 450px;
-	width: 80vw;
+	width: 50vw;
 	min-width: 700px;
 	background-color: #a14da0;
+
 	&_worddisplay {
 		height: 80px;
 		background-color: #7e1f86;
@@ -86,6 +94,35 @@ body {
 			font-size: 80px;
 			color: white;
 		}
+	}
+}
+
+.scoreboard {
+	margin: 0 auto;
+	height: 60vh;
+	max-height: 60vh;
+	min-height: 450px;
+	width: 35vw;
+	min-width: 400px;
+	background-color: #a14da0;
+
+	&_header {
+		height: 80px;
+		text-align: center;
+		font-size: 30px;
+
+		color: white;
+		background-color: #7e1f86;
+		h4 {
+			padding: 2vh;
+		}
+	}
+	&_score {
+		display: flex;
+		justify-content: space-evenly;
+		color: white;
+		background-color: #9d79bc;
+		border: 2px solid #a14da0;
 	}
 }
 

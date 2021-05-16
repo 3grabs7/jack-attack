@@ -33,11 +33,18 @@ body {
   border: 3px solid #7e1f86 !important;
 }
 
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
 .main {
   margin: 0 auto;
   height: 60vh;
   min-height: 450px;
-  width: 80vw;
+  width: 50vw;
   min-width: 700px;
   background-color: #a14da0;
 }
@@ -88,6 +95,33 @@ body {
 .main_counter #timeleftcounter {
   font-size: 80px;
   color: white;
+}
+
+.scoreboard {
+  margin: 0 auto;
+  height: 60vh;
+  max-height: 60vh;
+  min-height: 450px;
+  width: 35vw;
+  min-width: 400px;
+  background-color: #a14da0;
+}
+.scoreboard_header {
+  height: 80px;
+  text-align: center;
+  font-size: 30px;
+  color: white;
+  background-color: #7e1f86;
+}
+.scoreboard_header h4 {
+  padding: 2vh;
+}
+.scoreboard_score {
+  display: flex;
+  justify-content: space-evenly;
+  color: white;
+  background-color: #9d79bc;
+  border: 2px solid #a14da0;
 }
 
 .inactive {

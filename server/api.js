@@ -20,6 +20,7 @@ app.use('/', (req, res) => {
 	res.send('you made it 💚')
 })
 
+// no env, never gonna deploy anywaaays
 const PORT = 6969
 app.listen(PORT, () => {
 	console.log(`api running on port ${PORT}`)
