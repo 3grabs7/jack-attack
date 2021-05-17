@@ -8,9 +8,12 @@ import { loadScores, saveScore } from './scorehandler.js'
 // load
 document.addEventListener('DOMContentLoaded', () => {
 	loadScores()
+	const input = document.querySelector('.main_wordinput input')
+	input.disabled = true
 })
 let global_isGameRunning = false
-let global_timerInvterval
+let global_timerInterval
+let global_currentPoints
 
 // main, start jack attacking
 const button = document.querySelector('.main_startbutton button')
@@ -22,18 +25,20 @@ button.addEventListener('click', async () => {
 	const correctAnswerAnimation = document.querySelector('#displaycorrectanswer')
 
 	global_isGameRunning = true
-	let currentPoints = 0
+	global_currentPoints = 0
 	let numberofWordsFinished = 0
 
 	let wordToGuess = await generateRandomWord()
 	currentWord.innerHTML = modeRouting[selectedMode](wordToGuess)
 
 	wrap.classList.add('inactive')
+	input.disabled = false
 	input.focus()
 
-	let count = 20
+	let count = 10
 	timeLeft.innerHTML = count
-	global_timerInvterval = setInterval(() => {
+	timeLeft.classList.remove('inactive')
+	global_timerInterval = setInterval(() => {
 		count--
 		if (count > 3) {
 			timeLeft.classList.remove('timesalmostup')
@@ -44,10 +49,14 @@ button.addEventListener('click', async () => {
 		// this is where it finally ends
 		// save highscore, reset, repeat
 		if (count < 1) {
-			timeLeft.innerHTML = ''
+			const highscoreSubmission = document.querySelector('.highscoresubmission')
+			const nameInput = document.querySelector('#highscorename')
+
+			highscoreSubmission.classList.remove('inactive')
+			nameInput.focus()
 			wrap.classList.remove('inactive')
-			isGameRunning = false
-			enterHighscore(currentPoints)
+			timeLeft.innerHTML = ''
+			reset()
 			return
 		}
 		timeLeft.innerHTML = count
@@ -80,7 +89,7 @@ button.addEventListener('click', async () => {
 			}, 1000)
 			// if we got here, i guess they actually made it
 			numberofWordsFinished++
-			currentPoints += 1 * numberofWordsFinished
+			global_currentPoints += 1 * numberofWordsFinished
 			input.value = ''
 			count += 10
 			wordToGuess = await generateRandomWord()
@@ -119,17 +128,30 @@ const modeRouting = {
 
 // Reset
 function reset() {
-	clearInterval(global_timerInvterval)
+	clearInterval(global_timerInterval)
 	const wrap = document.querySelector('.main_startbutton')
-	wrap.classList.remove('inactive')
 	const input = document.querySelector('.main_wordinput input')
-	input.innerHTML = ''
 	const timeLeft = document.querySelector('#timeleftcounter')
+	const currentWord = document.querySelector('#currentword')
+
+	global_isGameRunning = false
+	wrap.classList.remove('inactive')
+	input.value = ''
+	input.disabled = true
 	timeLeft.classList.add('inactive')
+	currentWord.innerHTML = ''
 }
 
 // This is a cat
-function enterHighscore(score) {}
+const submitHighscoreButton = document.querySelector('#submithighscore')
+submitHighscoreButton.addEventListener('click', async () => {
+	const nameInput = document.querySelector('#highscorename')
+	const highscoreSubmission = document.querySelector('.highscoresubmission')
+
+	await saveScore(nameInput.value, global_currentPoints)
+	highscoreSubmission.classList.add('inactive')
+	await loadScores()
+})
 
 // testa sabotage, de e cooool
-sabotageWord('kom de går änkan')
+//sabotageWord('kom de går änkan')

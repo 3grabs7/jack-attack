@@ -2,6 +2,7 @@ body {
 	background-color: #9d79bc;
 	box-sizing: border-box;
 	margin: 0;
+	position: relative;
 }
 
 .header {
@@ -126,8 +127,48 @@ body {
 	}
 }
 
+.highscoresubmission {
+	position: absolute;
+	width: 100%;
+	height: 250px;
+	top: 25vh;
+	background-color: #a14da0;
+	border-top: 60px solid #7e1f86;
+	border-bottom: 20px solid #7e1f86;
+	text-align: center;
+	h3 {
+		color: white;
+		font-size: 48px;
+		padding: 0;
+		margin: 0;
+	}
+	input {
+		height: 50px;
+		width: 330px;
+
+		margin: 0 auto;
+		background-color: #91c4f2;
+		text-align: center;
+		font-size: 76px;
+		border: none;
+	}
+	button {
+		height: 50px;
+		width: 340px;
+		font-size: 40px;
+		background-color: #7e1f86;
+		color: white;
+		border: none;
+		&:hover {
+			cursor: pointer;
+			background-color: #91c4f2;
+			border: 3px solid #7e1f86;
+		}
+	}
+}
+
 .inactive {
-	display: none;
+	display: none !important;
 }
 
 .timesalmostup {
